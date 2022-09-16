@@ -1,15 +1,31 @@
+
+import React, { useContext } from 'react'
 import Layout from '../../components/Layout'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import data from '../../utils/data'
 import Image from 'next/image'
+import { Store } from '../../utils/Store'
 
 export default function ProductScreen() {
+  const { state, dispatch } = useContext(Store)
+
   const { query } = useRouter()
   const { slug } = query
-  const product = data.products.find(x => x.slug === slug)
+  const product = data.products.find((item) => item.slug === slug)
   if (!product) {
     return <div>Product not found</div>
+  }
+
+  const addToCartHandler = () => {
+    const existItem = state.cart.cartItems.find((item) => item.slug === product.slug)
+    const quantity = existItem ? existItem.quantity + 1 : 1
+
+    if (product.countInStock < quantity) {
+      alert('Sorry, this product is out of stock')
+      return
+    }
+    dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity } })
   }
 
   return (
@@ -24,7 +40,7 @@ export default function ProductScreen() {
             alt={product.name}
             width={915}
             height={915}
-            layput='responsive'
+            layout='responsive'
           />
         </div>
         <div>
@@ -34,7 +50,7 @@ export default function ProductScreen() {
             </li>
             <li>Category: {product.category}</li>
             <li>Brand: {product.brand}</li>
-            <li>{product.rating} of {product.numreviews} reviews</li>
+            <li>{product.rating} of {product.numReviews} reviews</li>
             <li>Description: {product.description}</li>
           </ul>
         </div>
@@ -48,7 +64,7 @@ export default function ProductScreen() {
               <div>Status</div>
               <div>{product.countInStock > 0 ? 'In stock' : 'Currently out of stock'}</div>
             </div>
-            <button className='primary-btn w-full'>Add to cart</button>
+            <button className='primary-btn w-full' onClick={addToCartHandler}>Add to cart</button>
           </div>
         </div>
       </div>

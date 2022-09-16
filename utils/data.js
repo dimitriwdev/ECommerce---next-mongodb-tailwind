@@ -64,7 +64,7 @@ const data = {
       name: 'Classic pants',
       slug: 'classic-pants',
       category: 'Pants',
-      image: '/images/pant2.webp',
+      image: '/images/pant3.webp',
       price: 75,
       brand: 'casely',
       rating: 2.4,

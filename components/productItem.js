@@ -12,7 +12,7 @@ export default function productItem({ product }) {
             alt={product.name}
             width={915}
             height={915}
-            layput='responsive'
+            layout='responsive'
             className='rounded shadow'
           />
         </a>
