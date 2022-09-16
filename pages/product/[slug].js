@@ -9,7 +9,7 @@ import { Store } from '../../utils/Store'
 
 export default function ProductScreen() {
   const { state, dispatch } = useContext(Store)
-
+  const router = useRouter()
   const { query } = useRouter()
   const { slug } = query
   const product = data.products.find((item) => item.slug === slug)
@@ -26,6 +26,7 @@ export default function ProductScreen() {
       return
     }
     dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity } })
+    router.push('/cart')
   }
 
   return (
@@ -41,6 +42,7 @@ export default function ProductScreen() {
             width={915}
             height={915}
             layout='responsive'
+            className='rounded-lg'
           />
         </div>
         <div>
@@ -55,7 +57,7 @@ export default function ProductScreen() {
           </ul>
         </div>
         <div>
-          <div className='product-card p-5'>
+          <div className='card p-5'>
             <div className='mb-2 flex justify-between'>
               <div>Price</div>
               <div>{product.price} &euro;</div>

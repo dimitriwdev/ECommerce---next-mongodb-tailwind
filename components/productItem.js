@@ -1,10 +1,26 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
+import React, { useContext } from 'react'
+import { Store } from '../utils/Store'
+import { useRouter } from 'next/router'
 
-export default function productItem({ product }) {
+export default function ProductItem({ product }) {
+  const { state, dispatch } = useContext(Store)
+  const router = useRouter()
+
+  const addToCartHandler = () => {
+    const existItem = state.cart.cartItems.find((item) => item.slug === product.slug)
+    const quantity = existItem ? existItem.quantity + 1 : 1
+
+    if (product.countInStock < quantity) {
+      alert('Sorry, this product is out of stock')
+      return
+    }
+    dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity } })
+    router.push('/cart')
+  }
   return (
-    <div className='product-card'>
+    <div className='card'>
       <Link href={`/product/${product.slug}`}>
         <a>
           <Image
@@ -25,7 +41,7 @@ export default function productItem({ product }) {
         </Link>
         <p className='mb-2'>{product.brand}</p>
         <p>{product.price} &euro;</p>
-        <button className='primary-btn' type='button'>
+        <button className='primary-btn' type='button' onClick={addToCartHandler}>
           Add to cart
         </button>
       </div>
