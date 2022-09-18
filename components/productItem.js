@@ -39,7 +39,7 @@ export default function ProductItem({ product }) {
             <h2 className='text-lg'>{product.name}</h2>
           </a>
         </Link>
-        <p className='mb-2'>{product.brand}</p>
+        <p className='mb-2 text-sm italic'>{product.brand}</p>
         <p>{product.price} &euro;</p>
         <button className='primary-btn' type='button' onClick={addToCartHandler}>
           Add to cart
