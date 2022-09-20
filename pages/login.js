@@ -9,7 +9,6 @@ import { useRouter } from 'next/router'
 
 
 export default function LoginScreen() {
-
   const { data: session } = useSession()
 
   const router = useRouter()
@@ -86,7 +85,9 @@ export default function LoginScreen() {
           }
         </div>
         <div className='mb-4'>
-          <button className='primary-btn'>Login</button>
+          <button className='primary-btn'>
+            Login
+          </button>
         </div>
         <div className='mb-4'>
           Don&apos;t have an account? &nbsp;
