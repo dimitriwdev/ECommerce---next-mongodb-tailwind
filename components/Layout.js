@@ -6,6 +6,7 @@ import { Store } from '../utils/Store'
 import 'react-toastify/dist/ReactToastify.css'
 import { ToastContainer } from 'react-toastify'
 import Cookies from 'js-cookie'
+import { Menu } from '@headlessui/react'
 
 export default function Layout({ title, children }) {
 
@@ -14,7 +15,6 @@ export default function Layout({ title, children }) {
   const { state, dispatch } = useContext(Store)
   const { cart } = state
   const [cartItemsCount, setCartItemsCount] = useState(0)
-  const [toggleModal, setToggleModal] = useState(false)
 
   useEffect(() => {
     setCartItemsCount(cart.cartItems.reduce((a, c) => a + c.quantity, 0))
@@ -25,10 +25,6 @@ export default function Layout({ title, children }) {
     Cookies.remove('cart')
     dispatch({ type: 'CART_RESET' })
     signOut({ callbackUrl: '/login' })
-  }
-
-  const modalHanlder = () => {
-    setToggleModal(!toggleModal)
   }
 
   return (
@@ -43,7 +39,7 @@ export default function Layout({ title, children }) {
         <header>
           <nav className='flex h-12 px-4 items-center justify-between shadow-md'>
             <Link href='/'>
-              <a className='text-lg font-bold'>ECommerce</a>
+              <a className='text-lg font-bold text-primary'>ECommerce</a>
             </Link>
             <div>
               <Link href='/cart'><a className='p-2'>
@@ -57,34 +53,36 @@ export default function Layout({ title, children }) {
               {status === 'loading'
                 ? 'Loading'
                 : session?.user
-                  ? <div className='relative inline-block'>
-                    <button className='text-primary' onClick={modalHanlder}>
-                      {session.user.name}
-                    </button>
-                    {toggleModal &&
-                      <ul className='absolute right-0 w-56 origin-top-right shadow-lg bg-white z-10 rounded'>
-                        <li>
-                          <Link href='/profile'>
-                            <a className='flex p-2 hover:bg-grey-light hover:text-primary rounded'>Profile</a>
-                          </Link>
-                        </li>
-                        <li>
-                          <Link href='/order-history'>
-                            <a className='flex p-2 hover:bg-grey-light hover:text-primary rounded'>Order History</a>
-                          </Link>
-                        </li>
-                        <li>
-                          <a
-                            href='#'
-                            className='flex p-2 hover:bg-grey-light hover:text-primary rounded'
-                            onClick={logoutClickHandler}
-                          >
-                            Log Out
-                          </a>
-                        </li>
-                      </ul>
-                    }
-                  </div>
+                  ? <Menu as='div' className='relative inline-block'>
+                    <Menu.Button>{session.user.name}</Menu.Button>
+                    <Menu.Items className='absolute right-0 w-56 origin-top-right shadow-lg bg-white z-10 rounded'>
+                      <Menu.Item>
+                        <a
+                          className='flex p-2 hover:bg-grey-light hover:text-primary rounded'
+                          href="/profile"
+                        >
+                          Profile
+                        </a>
+                      </Menu.Item>
+                      <Menu.Item>
+                        <a
+                          className='flex p-2 hover:bg-grey-light hover:text-primary rounded'
+                          href="/order-history"
+                        >
+                          Order History
+                        </a>
+                      </Menu.Item>
+                      <Menu.Item>
+                        <a
+                          href='#'
+                          className='flex p-2 hover:bg-grey-light hover:text-primary rounded'
+                          onClick={logoutClickHandler}
+                        >
+                          Log Out
+                        </a>
+                      </Menu.Item>
+                    </Menu.Items>
+                  </Menu>
                   :
                   <Link href='/login'>
                     <a className='p-2'>

@@ -51,7 +51,7 @@ export default function LoginScreen() {
             type='email'
             id='email'
             autoFocus
-            className='w-full p-2 border-2 rounded mt-2'
+            className='input'
             {...register('email', {
               required: 'Please enter an email',
               pattern: {
@@ -71,7 +71,7 @@ export default function LoginScreen() {
           <input
             type='password'
             id='password'
-            className='w-full p-2 border-2 rounded mt-2'
+            className='input'
             {...register('password', {
               required: 'Please enter your personal password',
               minLength: { value: 6, message: 'password should contain more than 6 characters' }
