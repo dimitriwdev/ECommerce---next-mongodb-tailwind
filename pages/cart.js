@@ -7,6 +7,8 @@ import { Store } from '../utils/Store'
 import bin from '../public/icons/bin.png'
 import { useRouter } from 'next/router'
 import dynamic from 'next/dynamic'
+import axios from 'axios'
+import { toast } from 'react-toastify'
 
 function CartScreen() {
   const router = useRouter()
@@ -19,14 +21,22 @@ function CartScreen() {
     dispatch({ type: 'CART_REMOVE_ITEM', payload: item })
   }
 
-  const updateCartHandler = (item, qty) => {
+  const updateCartHandler = async (item, qty) => {
     const quantity = Number(qty)
+
+    // TODO: verify comparison countInStock/quantity
+    const { data } = await axios.get(`/api/products/${item._id}`)
+
+    if (data.countInStock < quantity) {
+      return toast.error('Sorry, this item is out of stock', { theme: "colored" });
+    }
     dispatch({ type: 'CART_ADD_ITEM', payload: { ...item, quantity } })
+    toast.success('Item updated', { theme: "colored" });
   }
 
   return (
     <Layout title="Shopping Cart">
-      <h1 className='mb-4 text-xl'>Shopping Cart</h1>
+      <h1 className='my-10 text-xl'>Shopping Cart</h1>
       {cartItems.length === 0 ?
         <div>
           Cart is empty,{' '}
@@ -54,13 +64,15 @@ function CartScreen() {
                     <td>
                       <Link href={`/product/${item.slug}`}>
                         <a className='flex items-center'>
-                          <Image
-                            src={item.image}
-                            alt={item.name}
-                            width={50}
-                            height={50}
-                            className='rounded'
-                          />
+                          <div className='w-1/4'>
+                            <Image
+                              src={item.image}
+                              alt={item.name}
+                              width={915}
+                              height={915}
+                              className='rounded'
+                            />
+                          </div>
                           &nbsp;
                           &nbsp;
                           {item.name}

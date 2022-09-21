@@ -17,7 +17,7 @@ export default function Payment() {
   const submitHandler = (e) => {
     e.preventDefault()
     if (!selectedMethod) {
-      return toast.error('Payment method is required')
+      return toast.error('Payment method is required', { theme: "colored" })
     }
     dispatch({ type: 'SAVE_PAYMENT_METHOD', payload: selectedMethod })
     Cookies.set(
@@ -70,3 +70,5 @@ export default function Payment() {
     </Layout >
   )
 }
+
+Payment.auth = true

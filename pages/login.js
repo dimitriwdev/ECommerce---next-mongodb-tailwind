@@ -34,17 +34,17 @@ export default function LoginScreen() {
         password,
       })
       if (result.error) {
-        toast.error(result.error);
+        toast.error(result.error, { theme: "colored" });
       }
     } catch (err) {
-      toast.error(getError(err));
+      toast.error(getError(err), { theme: "colored" });
     }
   }
 
   return (
     <Layout title='Login'>
       <form className='mx-auto max-w-screen-md' onSubmit={handleSubmit(submitHandler)}>
-        <h1 className='mb-4 text-xl'>Login</h1>
+        <h1 className='my-10 text-xl'>Login</h1>
         <div className='mb-4'>
           <label htmlFor='email'>Email</label>
           <input
@@ -74,7 +74,7 @@ export default function LoginScreen() {
             className='input'
             {...register('password', {
               required: 'Please enter your personal password',
-              minLength: { value: 6, message: 'password should contain more than 6 characters' }
+              minLength: { value: 6, message: 'Password should contain more than 6 characters' }
             })}
           />
           {
@@ -84,7 +84,7 @@ export default function LoginScreen() {
             </div>
           }
         </div>
-        <div className='mb-4'>
+        <div className='my-4'>
           <button className='primary-btn'>
             Login
           </button>

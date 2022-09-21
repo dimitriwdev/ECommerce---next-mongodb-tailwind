@@ -3,38 +3,49 @@ import React, { useContext } from 'react'
 import Layout from '../../components/Layout'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
-import data from '../../utils/data'
 import Image from 'next/image'
 import { Store } from '../../utils/Store'
+import Product from '../../models/Product'
+import db from '../../utils/db'
+import axios from 'axios'
+import { toast } from 'react-toastify'
 
-export default function ProductScreen() {
+export default function ProductScreen(props) {
+  const { product } = props
   const { state, dispatch } = useContext(Store)
   const router = useRouter()
-  const { query } = useRouter()
-  const { slug } = query
-  const product = data.products.find((item) => item.slug === slug)
+
   if (!product) {
-    return <div>Product not found</div>
+    return (
+      <Layout title='Product not found'>
+        <p>Sorry, there&apos;s no item on this page</p>
+      </Layout>
+    )
   }
 
-  const addToCartHandler = () => {
-    const existItem = state.cart.cartItems.find((item) => item.slug === product.slug)
-    const quantity = existItem ? existItem.quantity + 1 : 1
+  const addToCartHandler = async () => {
+    const existItem = state.cart.cartItems.find((item) => item.slug === product.slug);
+    const quantity = existItem ? existItem.quantity + 1 : 1;
 
-    if (product.countInStock < quantity) {
-      alert('Sorry, this product is out of stock')
-      return
+    // TODO: verify comparison countInStock/quantity
+    const { data } = await axios.get(`/api/products/${product._id}`);
+    console.log('data', data);
+    if (data.countInStock < quantity) {
+      return toast.error('Sorry. Item out of stock');
     }
-    dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity } })
-    router.push('/cart')
-  }
 
+    dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity } });
+    router.push('/cart');
+  };
   return (
     <Layout title={product.name}>
       <div className='py-2'>
-        <Link href='/'>Back to Products</Link>
+        <Link href='/'>
+          <a className='text-primary'>Back to home page
+          </a>
+        </Link>
       </div>
-      <div className='grid md:grid-cols-4 md:gap-3'>
+      <div className='mt-4 grid md:grid-cols-4 md:gap-3'>
         <div className='md:col-span-2'>
           <Image
             src={product.image}
@@ -72,4 +83,19 @@ export default function ProductScreen() {
       </div>
     </Layout>
   )
+}
+
+export async function getServerSideProps(context) {
+  const { params } = context
+  const { slug } = params
+
+  await db.connect()
+  const product = await Product.findOne({ slug }).lean()
+  await db.disconnect()
+
+  return {
+    props: {
+      product: product ? db.convertDocToObj(product) : null
+    }
+  }
 }
