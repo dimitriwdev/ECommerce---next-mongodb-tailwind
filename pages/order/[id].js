@@ -25,7 +25,7 @@ function reducer(state, action) {
     case 'PAY_RESET':
       return { ...state, loadingPay: false, successPay: false, errorPay: '' };
     default:
-      state;
+      return state;
   }
 }
 
@@ -139,7 +139,7 @@ export default function Order() {
                 <p>{shippingAddress.country}</p>
               </div>
               {isDelivered ? (
-                <div className="my-3 p-2 bg-success text-white rounded">Delivered at {deliveredAt}</div>
+                <div className="my-3 p-2 bg-bgSuccess text-success rounded">Delivered at {deliveredAt}</div>
               ) : (
                 <div className="my-3 p-2 bg-bgError text-warning rounded">Not delivered</div>
               )}
@@ -149,7 +149,7 @@ export default function Order() {
               <h2 className="mb-2 text-lg">Payment Method</h2>
               <div>{paymentMethod}</div>
               {isPaid ? (
-                <div className="my-3 p-2 bg-success text-white rounded">Paid at {paidAt}</div>
+                <div className="my-3 p-2 bg-bgSuccess text-success rounded">Paid on {paidAt.substring(0, 10)}</div>
               ) : (
                 <div className="my-3 p-2 bg-bgError text-warning rounded">Not paid</div>
               )}
