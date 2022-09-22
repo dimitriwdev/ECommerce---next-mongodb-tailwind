@@ -63,7 +63,7 @@ function OrderHistory() {
                       key={order._id}
                       className='border-b'
                     >
-                      <td className='p-5'>... {order._id.substring(20, 24)}</td>
+                      <td className='p-5'>...{order._id.substring(20, 24)}</td>
                       <td className='p-5'>{order.createdAt.substring(0, 10)}</td>
                       <td className='p-5'>{order.totalPrice} &euro; </td>
                       <td className='p-5'>
