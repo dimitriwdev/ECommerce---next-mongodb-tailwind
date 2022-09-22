@@ -6,7 +6,7 @@ import Layout from '../components/Layout'
 export default function Unauthorized() {
   const router = useRouter()
   const message = router.query.message
-  console.log(message);
+
   return (
     <Layout title='Unauthorized Page'>
       <h1 className='text-xl mt-10 mb-4'>Access Denied</h1>

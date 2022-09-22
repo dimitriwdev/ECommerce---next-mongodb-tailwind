@@ -29,7 +29,7 @@ export default function ProductScreen(props) {
 
     // TODO: verify comparison countInStock/quantity
     const { data } = await axios.get(`/api/products/${product._id}`);
-    console.log('data', data);
+
     if (data.countInStock < quantity) {
       return toast.error('Sorry. Item out of stock');
     }

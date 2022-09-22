@@ -99,23 +99,25 @@ function CartScreen() {
               </tbody>
             </table>
           </div>
-          <div className='card p-5'>
-            <ul>
-              <li>
-                <div className='pb-3'>Subtotal: ({cartItems.reduce((a, c) => a + c.quantity, 0)})
-                  {' '}
-                  : {cartItems.reduce((a, c) => a + c.quantity * c.price, 0)}{' '}&euro;
-                </div>
-              </li>
-              <li>
-                <button
-                  onClick={() => router.push('login?redirect=/shipping')}
-                  className='primary-btn w-full'
-                >
-                  Check Out
-                </button>
-              </li>
-            </ul>
+          <div>
+            <div className='card p-5'>
+              <ul>
+                <li>
+                  <div className='pb-3'>Subtotal: ({cartItems.reduce((a, c) => a + c.quantity, 0)})
+                    {' '}
+                    : {cartItems.reduce((a, c) => a + c.quantity * c.price, 0)}{' '}&euro;
+                  </div>
+                </li>
+                <li>
+                  <button
+                    onClick={() => router.push('login?redirect=/shipping')}
+                    className='primary-btn w-full'
+                  >
+                    Check Out
+                  </button>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       }

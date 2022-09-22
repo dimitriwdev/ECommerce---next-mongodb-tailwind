@@ -34,7 +34,6 @@ export default function PlaceOrder() {
     }
   }, [router, paymentMethod])
 
-  console.log(itemsPrice);
   const placeOrderHandler = async () => {
     try {
       setLoading(true)
@@ -126,7 +125,7 @@ export default function PlaceOrder() {
                           </Link>
                         </td>
                         <td className='p-5 text-right'>{item.quantity}</td>
-                        <td className='p-5 text-right'>{item.price}</td>
+                        <td className='p-5 text-right'>{item.price}{' '}&euro;</td>
                         <td className='p-5 text-right'>{item.quantity * item.price}{' '}&euro;</td>
                       </tr>
                     ))}
@@ -141,37 +140,39 @@ export default function PlaceOrder() {
                 </div>
               </div>
             </div>
-            <div className='card p-5'>
-              <h2 className='mb-2 text-lg'>Order Summary</h2>
-              <ul>
-                <li>
-                  <div className='mb-2 flex justify-between'>
-                    <div>Items</div>
-                    <div>{itemsPrice}{' '}&euro;</div>
-                  </div>
-                  <div className='mb-2 flex justify-between'>
-                    <div>Tax</div>
-                    <div>{taxPrice}{' '}&euro;</div>
-                  </div>
-                  <div className='mb-2 flex justify-between'>
-                    <div>Shipping</div>
-                    <div>{shippingPrice}{' '}&euro;</div>
-                  </div>
-                  <div className='mb-2 flex justify-between'>
-                    <div>Total</div>
-                    <div>{totalPrice}{' '}&euro;</div>
-                  </div>
-                </li>
-                <li>
-                  <button
-                    disabled={loading}
-                    onClick={placeOrderHandler}
-                    className='primary-btn w-full'
-                  >
-                    {loading ? 'Loading...' : 'Place Order'}
-                  </button>
-                </li>
-              </ul>
+            <div>
+              <div className='card p-5'>
+                <h2 className='mb-2 text-lg'>Order Summary</h2>
+                <ul>
+                  <li>
+                    <div className='mb-2 flex justify-between'>
+                      <div>Items</div>
+                      <div>{itemsPrice}{' '}&euro;</div>
+                    </div>
+                    <div className='mb-2 flex justify-between'>
+                      <div>Tax</div>
+                      <div>{taxPrice}{' '}&euro;</div>
+                    </div>
+                    <div className='mb-2 flex justify-between'>
+                      <div>Shipping</div>
+                      <div>{shippingPrice}{' '}&euro;</div>
+                    </div>
+                    <div className='mb-2 flex justify-between'>
+                      <div>Total</div>
+                      <div>{totalPrice}{' '}&euro;</div>
+                    </div>
+                  </li>
+                  <li>
+                    <button
+                      disabled={loading}
+                      onClick={placeOrderHandler}
+                      className='primary-btn w-full'
+                    >
+                      {loading ? 'Loading...' : 'Place Order'}
+                    </button>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         )
