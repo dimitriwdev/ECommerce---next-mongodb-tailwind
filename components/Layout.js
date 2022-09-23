@@ -57,29 +57,39 @@ export default function Layout({ title, children }) {
                     <Menu.Button className='text-primary'>{session.user.name}</Menu.Button>
                     <Menu.Items className='absolute right-0 w-56 origin-top-right shadow-lg bg-white z-10 rounded'>
                       <Menu.Item>
-                        <a
-                          className='flex p-2 hover:bg-grey-light hover:text-primary rounded'
-                          href="/profile"
-                        >
-                          Profile
-                        </a>
+                        <Link href='/profile'>
+                          <a className='flex p-2 hover:bg-grey-light hover:text-primary rounded'>
+                            Profile
+                          </a>
+                        </Link>
                       </Menu.Item>
                       <Menu.Item>
-                        <a
-                          className='flex p-2 hover:bg-grey-light hover:text-primary rounded'
-                          href="/order-history"
-                        >
-                          Order History
-                        </a>
+                        <Link href='/order-history'>
+                          <a className='flex p-2 hover:bg-grey-light hover:text-primary rounded'>
+                            Order History
+                          </a>
+                        </Link>
                       </Menu.Item>
+
+                      {
+                        session.user.isAdmin && (
+                          <Menu.Item>
+                            <Link href='/admin/dashboard'>
+                              <a className='flex p-2 hover:bg-grey-light hover:text-primary rounded'>
+                                Admin Dashboard
+                              </a>
+                            </Link>
+                          </Menu.Item>
+                        )}
                       <Menu.Item>
-                        <a
-                          href='#'
-                          className='flex p-2 hover:bg-grey-light hover:text-primary rounded'
-                          onClick={logoutClickHandler}
-                        >
-                          Log Out
-                        </a>
+                        <Link href='#'>
+                          <a
+                            className='flex p-2 hover:bg-grey-light hover:text-primary rounded'
+                            onClick={logoutClickHandler}
+                          >
+                            Log Out
+                          </a>
+                        </Link>
                       </Menu.Item>
                     </Menu.Items>
                   </Menu>

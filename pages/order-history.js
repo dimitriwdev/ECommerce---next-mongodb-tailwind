@@ -81,7 +81,7 @@ function OrderHistory() {
                         }
                       </td>
                       <td className='p-5'>
-                        <Link href={`/order/${order._id}`}>
+                        <Link href={`/order/${order._id}`} passHref>
                           <a className='text-primary'>Details</a>
                         </Link>
                       </td>
