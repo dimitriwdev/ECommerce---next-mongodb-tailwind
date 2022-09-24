@@ -98,7 +98,7 @@ export default function AdminOrders() {
                         <td className='p-5'>{order.totalPrice}{' '}&euro;</td>
                         <td className='p-5'>{order.isPaid ? order.paidAt.substring(0, 10) : 'Not paid'}</td>
                         <td className='p-5'>{order.isDelivered ? order.deliveredAt.substring(0, 10) : 'Not delivered'}</td>
-                        <td className='p-5'><Link href={`${order._id}`} passHref><a className='text-primary'>Details</a></Link></td>
+                        <td className='p-5'><Link href={`/order/${order._id}`} passHref><a className='text-primary'>Details</a></Link></td>
                       </tr>
                     ))}
                   </tbody>
