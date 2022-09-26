@@ -205,16 +205,18 @@ export default function Order() {
                               alt={item.name}
                               width={50}
                               height={50}
-                            ></Image>
+                              className='rounded'
+                            />
+                            &nbsp;
                             &nbsp;
                             {item.name}
                           </a>
                         </Link>
                       </td>
                       <td className=" p-5 text-right">{item.quantity}</td>
-                      <td className="p-5 text-right">${item.price}</td>
+                      <td className="p-5 text-right">{item.price}{' '}&euro;</td>
                       <td className="p-5 text-right">
-                        ${item.quantity * item.price}
+                        {item.quantity * item.price}{' '}&euro;
                       </td>
                     </tr>
                   ))}
@@ -229,25 +231,25 @@ export default function Order() {
                 <li>
                   <div className="mb-2 flex justify-between">
                     <div>Items</div>
-                    <div>${itemsPrice}</div>
+                    <div>{itemsPrice}{' '}&euro;</div>
                   </div>
                 </li>{' '}
                 <li>
                   <div className="mb-2 flex justify-between">
                     <div>Tax</div>
-                    <div>${taxPrice}</div>
+                    <div>{taxPrice}{' '}&euro;</div>
                   </div>
                 </li>
                 <li>
                   <div className="mb-2 flex justify-between">
                     <div>Shipping</div>
-                    <div>${shippingPrice}</div>
+                    <div>{shippingPrice}{' '}&euro;</div>
                   </div>
                 </li>
                 <li>
                   <div className="mb-2 flex justify-between">
                     <div>Total</div>
-                    <div>${totalPrice}</div>
+                    <div>{totalPrice}{' '}&euro;</div>
                   </div>
                 </li>
                 {!isPaid && (

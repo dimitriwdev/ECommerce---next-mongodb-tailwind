@@ -53,7 +53,7 @@ export default function ProductScreen(props) {
             width={915}
             height={915}
             layout='responsive'
-            className='rounded-lg'
+            className='rounded'
           />
         </div>
         <div>
