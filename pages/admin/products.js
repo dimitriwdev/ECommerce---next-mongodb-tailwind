@@ -100,8 +100,8 @@ export default function AdminProducts() {
                         <td className='p-5'>{product.countInStock}</td>
                         <td className='p-5'>{product.rating}</td>
                         <div className='p-5'>
-                          <Link href={`/admin/product/${product._id}`}><a className='text-primary mx-1'>Edit</a></Link>
-                          <button className='mx-1'>Delete</button>
+                          <Link href={`/admin/product/${product._id}`}><a className='text-primary mr-1'>Edit</a></Link>
+                          <button className='ml-1'>Delete</button>
                         </div>
                       </tr>
                     ))}
@@ -115,4 +115,4 @@ export default function AdminProducts() {
   )
 }
 
-AdminProducts.auth = { isAdmin: true }
+AdminProducts.auth = { adminOnly: true }
