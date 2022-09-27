@@ -42,7 +42,7 @@ function CartScreen() {
           Cart is empty,{' '}
           <Link href='/'>
             <a className='text-link'>
-              Go shopping
+              Go shopping!
             </a>
           </Link>
         </div>

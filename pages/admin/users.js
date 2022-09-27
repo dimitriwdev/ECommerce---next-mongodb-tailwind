@@ -115,7 +115,7 @@ export default function AdminUsers() {
                       <th className='p-5 text-left'>NAME</th>
                       <th className='p-5 text-left'>EMAIL</th>
                       <th className='p-5 text-left'>ADMIN</th>
-                      <th className='p-5 text-left'>ACTIONS</th>
+                      <th className='p-5 text-center'>ACTIONS</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -128,24 +128,27 @@ export default function AdminUsers() {
                         <td className='p-5'>{user.name}</td>
                         <td className='p-5'>{user.email}</td>
                         <td className='p-5'>{user.isAdmin ? 'YES' : 'NO'}</td>
-                        <div className='p-5 flex nowrap'>
+                        <td className='p-5 flex justify-around nowrap'>
                           <button
                             type='button'
                           >
                             <Link href={`/admin/user/${user._id}`} passHref>
-                              <a className='primary-btn mr-1 text-sm'>
+                              <a className='edit-btn text-sm'>
                                 Edit
                               </a>
                             </Link>
                           </button>
                           <button
                             type='button'
-                            className='ml-1 text-warning text-sm'
                             onClick={() => deleteHandler(user._id)}
                           >
-                            Delete
+                            <Link href='#'>
+                              <a className='delete-btn text-warning text-sm'>
+                                Delete
+                              </a>
+                            </Link>
                           </button>
-                        </div>
+                        </td>
                       </tr>
                     ))}
                   </tbody>
@@ -154,7 +157,7 @@ export default function AdminUsers() {
             )}
         </div>
       </div>
-    </Layout>
+    </Layout >
   )
 }
 

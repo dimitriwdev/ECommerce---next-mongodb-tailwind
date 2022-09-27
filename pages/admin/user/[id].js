@@ -137,7 +137,7 @@ export default function AdminUserEdit() {
                   )}
                 </div>
                 <div className='mb-4'>
-                  <label htmlFor='isAdmin'>Admin</label>
+                  <label htmlFor='isAdmin'>Is admin</label>
                   <input
                     type='checkbox'
                     className='mx-4'

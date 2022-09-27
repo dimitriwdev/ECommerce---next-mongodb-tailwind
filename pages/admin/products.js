@@ -53,7 +53,7 @@ export default function AdminProducts() {
       dispatch({ type: 'CREATE_REQUEST' })
       const { data } = await axios.post('/api/admin/products')
       dispatch({ type: 'CREATE_SUCCESS' })
-      toast.success('Product created successfully')
+      toast.success('Product created successfully', { theme: 'colored' })
       router.push(`/admin/product/${data.product._id}`)
     } catch (err) {
       dispatch({ type: 'CREATE_FAIL' })
@@ -122,15 +122,15 @@ export default function AdminProducts() {
           </ul>
         </div>
         <div className='overflow-x-auto md:col-span-4'>
-          <div className='flex justify-between my-10'>
+          <div className='flex justify-between items-center my-10'>
             <h1 className='text-xl'>Products</h1>
             {loadingDelete && <div>Deleting item...</div>}
             <button
               disabled={loadingCreate}
               onClick={createHandler}
-              className='primary-btn mr-3 text-sm'
+              className='primary-btn'
             >
-              {loadingCreate ? 'Loading' : 'Create'}
+              {loadingCreate ? 'Loading' : 'Create new product'}
             </button>
           </div>
           {
@@ -149,7 +149,7 @@ export default function AdminProducts() {
                       <th className='p-5 text-left'>CATEGORY</th>
                       <th className='p-5 text-left'>COUNT</th>
                       <th className='p-5 text-left'>RATING</th>
-                      <th className='p-5 text-left'>ACTIONS</th>
+                      <th className='p-5 text-center'>ACTIONS</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -164,20 +164,27 @@ export default function AdminProducts() {
                         <td className='p-5'>{product.category}</td>
                         <td className='p-5'>{product.countInStock}</td>
                         <td className='p-5'>{product.rating}</td>
-                        <div className='p-1'>
-                          <Link href={`/admin/product/${product._id}`}>
-                            <a className='primary-btn mr-1 text-sm'>
-                              Edit
-                            </a>
-                          </Link>
+                        <td className='p-5 flex justify-around nowrap'>
                           <button
                             type='button'
-                            className='ml-1 default-btn text-sm'
+                          >
+                            <Link href={`/admin/product/${product._id}`} passHref>
+                              <a className='edit-btn text-sm'>
+                                Edit
+                              </a>
+                            </Link>
+                          </button>
+                          <button
+                            type='button'
                             onClick={() => deleteHandler(product._id)}
                           >
-                            Delete
+                            <Link href='#'>
+                              <a className='delete-btn text-warning text-sm'>
+                                Delete
+                              </a>
+                            </Link>
                           </button>
-                        </div>
+                        </td>
                       </tr>
                     ))}
                   </tbody>

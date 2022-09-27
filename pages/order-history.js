@@ -45,7 +45,7 @@ function OrderHistory() {
           ? <div>Loading...</div>
           : error
             ? <div className='warning'>{error}</div>
-            : <div className='overflow-x-auto mb-10'>
+            : orders.length > 0 ? <div className='overflow-x-auto mb-10'>
               <table className='min-w-full'>
                 <thead className='border-b'>
                   <tr>
@@ -90,6 +90,15 @@ function OrderHistory() {
                 </tbody>
               </table>
             </div>
+              :
+              <div>
+                No orders,{' '}
+                <Link href='/'>
+                  <a className='text-link'>
+                    Go shopping!
+                  </a>
+                </Link>
+              </div>
       }
     </Layout>
   )
