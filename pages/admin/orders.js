@@ -73,7 +73,7 @@ export default function AdminOrders() {
             ) : error ? (
               <div className='warning p-3 bg-bgError rounded'>{error}</div>
             ) : (
-              <div className='overflow-x-auto'>
+              <div className='overflow-x-auto mb-10'>
                 <table className='min-w-full'>
                   <thead className='border-b'>
                     <tr>
