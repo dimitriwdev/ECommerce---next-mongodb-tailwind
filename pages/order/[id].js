@@ -257,13 +257,18 @@ export default function Order() {
                     {isPending ? (
                       <div>Loading...</div>
                     ) : (
-                      <div className="w-full">
-                        <PayPalButtons
-                          createOrder={createOrder}
-                          onApprove={onApprove}
-                          onError={onError}
-                        ></PayPalButtons>
-                      </div>
+                      paymentMethod === 'Paypal' ?
+                        <div className="w-full">
+                          <PayPalButtons
+                            createOrder={createOrder}
+                            onApprove={onApprove}
+                            onError={onError}
+                          ></PayPalButtons>
+                        </div>
+                        :
+                        <div className="w-full">
+                          <button className='bg-warning p-2 rounded text-white'>Implement other payment method</button>
+                        </div>
                     )}
                     {loadingPay && <div>Loading...</div>}
                   </li>

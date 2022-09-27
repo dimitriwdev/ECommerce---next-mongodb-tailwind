@@ -69,7 +69,7 @@ export default function AdminOrders() {
           <h1 className='text-xl my-10'>Admin Orders</h1>
           {
             loading ? (
-              <div>Loading...</div>
+              <div className='my-10'>Loading...</div>
             ) : error ? (
               <div className='warning p-3 bg-bgError rounded'>{error}</div>
             ) : (

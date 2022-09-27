@@ -24,19 +24,18 @@ export default function ProductScreen(props) {
   }
 
   const addToCartHandler = async () => {
-    const existItem = state.cart.cartItems.find((item) => item.slug === product.slug);
+    const existItem = state.cart.cartItems.find((x) => x.slug === product.slug);
     const quantity = existItem ? existItem.quantity + 1 : 1;
 
-    // TODO: verify comparison countInStock/quantity
     const { data } = await axios.get(`/api/products/${product._id}`);
-
     if (data.countInStock < quantity) {
-      return toast.error('Sorry. Item out of stock');
+      return toast.error('Sorry. Product is out of stock', { theme: 'colored' });
     }
 
     dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity } });
     router.push('/cart');
   };
+
   return (
     <Layout title={product.name}>
       <div className='py-2'>

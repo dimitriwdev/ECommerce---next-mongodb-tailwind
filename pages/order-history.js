@@ -42,7 +42,7 @@ function OrderHistory() {
       <h1 className='my-10 text-xl'>Order History</h1>
       {
         loading
-          ? <div>Loading...</div>
+          ? <div className='my-10'>Loading...</div>
           : error
             ? <div className='warning'>{error}</div>
             : orders.length > 0 ? <div className='overflow-x-auto mb-10'>

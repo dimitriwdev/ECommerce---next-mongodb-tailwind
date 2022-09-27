@@ -103,7 +103,7 @@ export default function AdminUsers() {
           {loadingDelete && <div>Deleting user...</div>}
           {
             loading ? (
-              <div>Loading...</div>
+              <div className='my-10'>Loading...</div>
             ) : error ? (
               <div className='warning p-3 bg-bgError rounded'>{error}</div>
             ) : (
@@ -133,7 +133,7 @@ export default function AdminUsers() {
                             type='button'
                           >
                             <Link href={`/admin/user/${user._id}`} passHref>
-                              <a className='edit-btn text-sm'>
+                              <a className='primary-btn text-sm'>
                                 Edit
                               </a>
                             </Link>

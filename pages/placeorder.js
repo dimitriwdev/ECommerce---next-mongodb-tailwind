@@ -24,7 +24,7 @@ export default function PlaceOrder() {
     cartItems.reduce((a, c) => a + c.quantity * c.price, 0)
   ); // 123.4567 => 123.46
 
-  const shippingPrice = itemsPrice > 200 ? 0 : 15;
+  const shippingPrice = itemsPrice >= 200 ? 0 : 15;
   const taxPrice = round2(itemsPrice * 0.15);
   const totalPrice = round2(itemsPrice + shippingPrice + taxPrice);
 
@@ -153,7 +153,7 @@ export default function PlaceOrder() {
                     </div>
                     <div className='mb-2 flex justify-between'>
                       <div>Shipping</div>
-                      <div>{shippingPrice}{' '}&euro;</div>
+                      <div>{shippingPrice === 0 ? 'Free' : shippingPrice + ' ' + '€'}</div>
                     </div>
                     <div className='mb-2 flex justify-between'>
                       <div>Total</div>

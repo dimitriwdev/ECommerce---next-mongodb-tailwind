@@ -43,7 +43,7 @@ export default function Payment() {
       <form className='mx-auto max-w-screen-md' onSubmit={(e) => submitHandler(e)}>
         <h1 className='text-xl my-10'>Payment Method</h1>
         {
-          ['paypal', 'stripe', 'cashOnDelivery'].map((method) => (
+          ['Paypal', 'Stripe', 'Cash on delivery'].map((method) => (
             <div
               key={method}
               className='mb-4'

@@ -72,7 +72,7 @@ export default function AdminDashboard() {
     datasets: [
       {
         label: 'Sales',
-        backgroundColor: 'rgba(162, 222, 208, 1)',
+        backgroundColor: 'rgba(94, 140, 173, 1)',
         data: summary.salesData.map((x) => x.totalSales),
       },
     ],
@@ -109,7 +109,7 @@ export default function AdminDashboard() {
           <h1 className='text-xl my-10'>Admin Dashboard</h1>
           {
             loading ? (
-              <div>Loading...</div>
+              <div className='my-10'>Loading...</div>
             ) : error ? (
               <div className='warning p-3 bg-bgError rounded'>{error}</div>
             ) : (

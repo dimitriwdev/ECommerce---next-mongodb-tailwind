@@ -163,7 +163,7 @@ export default function AdminProductEdit() {
         <div className='md:col-span-4'>
           {
             loading ? (
-              <div>Loading...</div>
+              <div className='my-10'>Loading...</div>
             ) : error ? (
               <div className='warning p-3 bg-bgError rounded'>{error}</div>
             ) : (

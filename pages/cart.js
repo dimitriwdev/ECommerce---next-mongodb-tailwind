@@ -24,12 +24,12 @@ function CartScreen() {
   const updateCartHandler = async (item, qty) => {
     const quantity = Number(qty)
 
-    // TODO: verify comparison countInStock/quantity
     const { data } = await axios.get(`/api/products/${item._id}`)
-
+    console.log('data', data);
     if (data.countInStock < quantity) {
       return toast.error('Sorry, this item is out of stock', { theme: "colored" });
     }
+
     dispatch({ type: 'CART_ADD_ITEM', payload: { ...item, quantity } })
     toast.success('Item updated', { theme: "colored" });
   }
@@ -78,9 +78,16 @@ function CartScreen() {
                       </Link>
                     </td>
                     <td className='p-5 text-right'>
-                      <select value={item.quantity} onChange={(e) => updateCartHandler(item, e.target.value)}>
+                      <select
+                        value={item.quantity}
+                        onChange={(e) => updateCartHandler(item, e.target.value)}
+                      >
                         {[...Array(item.countInStock).keys()].map((item) => (
-                          <option key={item + 1} value={item + 1}>
+                          <option
+                            key={item + 1}
+                            value={item + 1}
+                            className='text-right'
+                          >
                             {item + 1}
                           </option>
                         ))}
@@ -98,7 +105,7 @@ function CartScreen() {
             </table>
           </div>
           <div>
-            <div className='card p-5'>
+            <div className='card p-5 mt-5'>
               <ul>
                 <li>
                   <div className='pb-3'>Subtotal: ({cartItems.reduce((a, c) => a + c.quantity, 0)})

@@ -15,10 +15,9 @@ export default function Home({ products }) {
     const existItem = cart.cartItems.find((item) => item.slug === product.slug);
     const quantity = existItem ? existItem.quantity + 1 : 1;
 
-    // TODO: verify comparison countInStock/quantity
     const { data } = await axios.get(`/api/products/${product._id}`);
     console.log('countinstock', data);
-    if (data.countInStock <= quantity) {
+    if (data.countInStock < quantity) {
       return toast.error('Sorry, this item is out of stock', { theme: "colored" })
 
     }
@@ -28,7 +27,7 @@ export default function Home({ products }) {
 
   return (
     <Layout title="Home page">
-      <div className='grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4'>
+      <div className='grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4 my-5'>
         {products.map((product) => (
           <ProductItem
             key={product.slug}

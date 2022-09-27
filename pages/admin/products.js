@@ -135,7 +135,7 @@ export default function AdminProducts() {
           </div>
           {
             loading ? (
-              <div>Loading...</div>
+              <div className='my-10'>Loading...</div>
             ) : error ? (
               <div className='warning p-3 bg-bgError rounded'>{error}</div>
             ) : (
@@ -169,7 +169,7 @@ export default function AdminProducts() {
                             type='button'
                           >
                             <Link href={`/admin/product/${product._id}`} passHref>
-                              <a className='edit-btn text-sm'>
+                              <a className='primary-btn text-sm'>
                                 Edit
                               </a>
                             </Link>
