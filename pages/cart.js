@@ -64,13 +64,15 @@ function CartScreen() {
                     <td>
                       <Link href={`/product/${item.slug}`}>
                         <a className='flex items-center'>
-                          <Image
-                            src={item.image}
-                            alt={item.name}
-                            width={50}
-                            height={50}
-                            className='rounded'
-                          />
+                          <div className='flex w-1/6'>
+                            <Image
+                              src={item.image}
+                              alt={item.name}
+                              width={915}
+                              height={915}
+                              className='rounded'
+                            />
+                          </div>
                           &nbsp;
                           &nbsp;
                           {item.name}
@@ -94,9 +96,11 @@ function CartScreen() {
                       </select>
                     </td>
                     <td className='p-5 text-right'>{item.price} &euro;</td>
-                    <td className='p-5 flex items-center justify-center'>
-                      <button className='pt-2' onClick={() => removeItemHandler(item)}>
-                        <Image src={bin} alt='delete item' width={20} height={20} />
+                    <td className='p-5'>
+                      <button className='flex items-center justify-center' onClick={() => removeItemHandler(item)}>
+                        <div className='pt-1 w-1/6'>
+                          <Image src={bin} alt='delete item' width={512} height={512} />
+                        </div>
                       </button>
                     </td>
                   </tr>
@@ -110,7 +114,7 @@ function CartScreen() {
                 <li>
                   <div className='pb-3'>Subtotal: ({cartItems.reduce((a, c) => a + c.quantity, 0)})
                     {' '}
-                    : {cartItems.reduce((a, c) => a + c.quantity * c.price, 0)}{' '}&euro;
+                    : {cartItems.reduce((a, c) => a + c.quantity * c.price, 0)}&nbsp;&euro;
                   </div>
                 </li>
                 <li>

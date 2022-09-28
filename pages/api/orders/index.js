@@ -1,5 +1,6 @@
 import { getSession } from "next-auth/react"
 import Order from "../../../models/Order"
+import Product from "../../../models/Product"
 import db from "../../../utils/db"
 
 const handler = async (req, res) => {
@@ -9,6 +10,7 @@ const handler = async (req, res) => {
   }
 
   const { user } = session
+
   await db.connect()
   const newOrder = new Order({
     ...req.body,
@@ -16,6 +18,18 @@ const handler = async (req, res) => {
   })
 
   const order = await newOrder.save()
+
+  for (let i = 0; i < order.orderItems.length; i++) {
+    const item = order.orderItems[i]
+    const product = await Product.findById(item._id)
+    console.log('item: ', item)
+    console.log('product: ', product)
+    product.countInStock -= item.quantity
+    console.log('product.countInStock: ', product.countInStock)
+    console.log('item.quantity: ', item.quantity)
+    await product.save()
+  }
+
   res.status(201).send(order)
 }
 

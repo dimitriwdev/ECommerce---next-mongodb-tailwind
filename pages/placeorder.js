@@ -110,13 +110,15 @@ export default function PlaceOrder() {
                         <td>
                           <Link href={`/products/${item.slug}`}>
                             <a className='flex items-center'>
-                              <Image
-                                src={item.image}
-                                alt={item.name}
-                                width={50}
-                                height={50}
-                                className='rounded'
-                              />
+                              <div className='flex w-1/6 py-1'>
+                                <Image
+                                  src={item.image}
+                                  alt={item.name}
+                                  width={915}
+                                  height={915}
+                                  className='rounded'
+                                />
+                              </div>
                               &nbsp;
                               {item.name}
                             </a>
