@@ -40,5 +40,6 @@ export default NextAuth({
         throw new Error('Invalid email or password')
       }
     })
-  ]
+  ],
+  secret: process.env.NEXTAUTH_SECRET
 })
