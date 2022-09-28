@@ -200,7 +200,7 @@ export default function Order() {
                       <td>
                         <Link href={`/product/${item.slug}`}>
                           <a className="flex items-center">
-                            <div className='flex w-1/6 py-1'>
+                            <div className='flex w-20 py-1'>
                               <Image
                                 src={item.image}
                                 alt={item.name}

@@ -98,7 +98,7 @@ function CartScreen() {
                     <td className='p-5 text-right'>{item.price} &euro;</td>
                     <td className='p-5'>
                       <button className='flex items-center justify-center' onClick={() => removeItemHandler(item)}>
-                        <div className='pt-1 w-1/6'>
+                        <div className='pt-1 w-1/4 lg:w-1/6'>
                           <Image src={bin} alt='delete item' width={512} height={512} />
                         </div>
                       </button>
