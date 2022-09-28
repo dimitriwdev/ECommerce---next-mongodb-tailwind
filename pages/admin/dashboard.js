@@ -1,6 +1,6 @@
 import React, { useEffect, useReducer } from 'react'
 import axios from 'axios'
-import { Bar } from 'react-chartjs-2'
+import { Bar } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -68,7 +68,7 @@ export default function AdminDashboard() {
   }, []);
 
   const data = {
-    labels: summary.salesData.map((x) => x._id),
+    labels: summary.salesData.map((x) => x._id), // 2022/01 2022/03
     datasets: [
       {
         label: 'Sales',
@@ -147,7 +147,7 @@ export default function AdminDashboard() {
                 <h2 className='text-xl my-5'>Sales Report</h2>
                 <Bar
                   options={{
-                    legend: { dispaly: true, position: 'right' },
+                    legend: { display: true, position: 'right' },
                   }}
                   data={data}
                 />
