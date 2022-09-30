@@ -43,7 +43,7 @@ export default function LoginScreen() {
         toast.error(result.error);
       }
     } catch (err) {
-      toast.error(getError(err));
+      toast.error(getError(err), { theme: 'colored' });
     }
   };
   return (

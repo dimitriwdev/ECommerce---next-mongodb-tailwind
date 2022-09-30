@@ -55,11 +55,10 @@ export default function PlaceOrder() {
           cartItems: [],
         })
       )
-
       router.push(`/order/${data._id}`)
     } catch (err) {
       setLoading(false)
-      toast.error(getError(err))
+      toast.error(getError(err), { theme: 'colored' })
     }
 
   }
