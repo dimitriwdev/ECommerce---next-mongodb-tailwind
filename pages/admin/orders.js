@@ -7,23 +7,23 @@ import { getError } from '../../utils/error'
 function reducer(state, action) {
   switch (action.type) {
     case 'FETCH_REQUEST':
-      return { ...state, loading: true, error: '' }
+      return { ...state, loading: true, error: '' };
     case 'FETCH_SUCCESS':
-      return { ...state, loading: false, orders: action.payload, error: '' }
+      return { ...state, loading: false, orders: action.payload, error: '' };
     case 'FETCH_FAIL':
-      return { ...state, loading: false, error: action.payload }
+      return { ...state, loading: false, error: action.payload };
     default:
-      state
+      state;
   }
 }
 
 export default function AdminOrders() {
 
-  const [{ loading, orders, error }, dispatch] = useReducer(reducer, {
+  const [{ loading, error, orders }, dispatch] = useReducer(reducer, {
     loading: true,
     orders: [],
     error: '',
-  })
+  });
 
   useEffect(() => {
     const fetchData = async () => {
@@ -37,6 +37,8 @@ export default function AdminOrders() {
     };
     fetchData();
   }, []);
+
+  console.log(orders);
 
   return (
     <Layout title='Admin Orders'>
@@ -87,20 +89,24 @@ export default function AdminOrders() {
                     </tr>
                   </thead>
                   <tbody>
-                    {orders.map((order) => (
-                      <tr
-                        key={order._id}
-                        className='border-b'
-                      >
-                        <td className='p-5'>...{order._id.substring(20, 24)}</td>
-                        <td className='p-5'>{order.user ? order.user.name : 'DELETED USER'}</td>
-                        <td className='p-5'>{order.createdAt.substring(0, 10)}</td>
-                        <td className='p-5'>{order.totalPrice}{' '}&euro;</td>
-                        <td className='p-5'>{order.isPaid ? order.paidAt.substring(0, 10) : 'Not paid'}</td>
-                        <td className='p-5'>{order.isDelivered ? order.deliveredAt.substring(0, 10) : 'Not delivered'}</td>
-                        <td className='p-5'><Link href={`/order/${order._id}`} passHref><a className='text-primary'>Details</a></Link></td>
-                      </tr>
-                    ))}
+                    {orders.map((order) => {
+
+                      return (
+                        <tr
+                          key={order._id}
+                          className='border-b'
+                        >
+                          <td className='p-5'>...{order._id.substring(20, 24)}</td>
+                          <td className='p-5'>{order.user ? order.user.name : 'DELETED USER'}</td>
+                          <td className='p-5'>{order.createdAt.substring(0, 10)}</td>
+                          <td className='p-5'>{order.totalPrice}{' '}&euro;</td>
+                          <td className='p-5'>{order.isPaid ? order.paidAt.substring(0, 10) : 'Not paid'}</td>
+                          <td className='p-5'>{order.isDelivered ? order.deliveredAt.substring(0, 10) : 'Not delivered'}</td>
+                          <td className='p-5'><Link href={`/order/${order._id}`} passHref><a className='text-primary'>Details</a></Link></td>
+                        </tr>
+                      )
+                    }
+                    )}
                   </tbody>
                 </table>
               </div>

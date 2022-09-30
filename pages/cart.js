@@ -64,7 +64,7 @@ function CartScreen() {
                     <td>
                       <Link href={`/product/${item.slug}`}>
                         <a className='flex items-center'>
-                          <div className='flex w-1/6'>
+                          <div className='flex w-1/12'>
                             <Image
                               src={item.image}
                               alt={item.name}
@@ -98,8 +98,8 @@ function CartScreen() {
                     <td className='p-5 text-right'>{item.price} &euro;</td>
                     <td className='p-5'>
                       <button className='flex items-center justify-center' onClick={() => removeItemHandler(item)}>
-                        <div className='pt-1 w-1/4 lg:w-1/6'>
-                          <Image src={bin} alt='delete item' width={512} height={512} />
+                        <div className='pt-1'>
+                          <Image src={bin} alt='delete item' width={20} height={20} />
                         </div>
                       </button>
                     </td>
