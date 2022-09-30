@@ -1,36 +1,36 @@
 import React, { useEffect, useReducer } from 'react'
 import axios from 'axios'
-import { Bar } from 'react-chartjs-2';
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend,
-} from 'chart.js';
+// import { Bar } from 'react-chartjs-2';
+// import {
+//   Chart as ChartJS,
+//   CategoryScale,
+//   LinearScale,
+//   BarElement,
+//   Title,
+//   Tooltip,
+//   Legend,
+// } from 'chart.js';
 import Link from 'next/link'
 import Layout from '../../components/Layout'
 import { getError } from '../../utils/error'
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend
-);
+// ChartJS.register(
+//   CategoryScale,
+//   LinearScale,
+//   BarElement,
+//   Title,
+//   Tooltip,
+//   Legend
+// );
 
-export const options = {
-  responsive: true,
-  plugins: {
-    legend: {
-      position: 'top',
-    },
-  },
-};
+// export const options = {
+//   responsive: true,
+//   plugins: {
+//     legend: {
+//       position: 'top',
+//     },
+//   },
+// };
 
 function reducer(state, action) {
   switch (action.type) {
@@ -67,16 +67,16 @@ export default function AdminDashboard() {
     fetchData();
   }, []);
 
-  const data = {
-    labels: summary.salesData.map((x) => x._id), // 2022/01 2022/03
-    datasets: [
-      {
-        label: 'Sales',
-        backgroundColor: 'rgba(94, 140, 173, 1)',
-        data: summary.salesData.map((x) => x.totalSales),
-      },
-    ],
-  };
+  // const data = {
+  //   labels: summary.salesData.map((x) => x._id), // 2022/01 2022/03
+  //   datasets: [
+  //     {
+  //       label: 'Sales',
+  //       backgroundColor: 'rgba(94, 140, 173, 1)',
+  //       data: summary.salesData.map((x) => x.totalSales),
+  //     },
+  //   ],
+  // };
 
   return (
     <Layout title='Admin Dashboard'>
@@ -144,13 +144,13 @@ export default function AdminDashboard() {
                     </Link>
                   </div>
                 </div>
-                <h2 className='text-xl my-5'>Sales Report</h2>
+                {/* <h2 className='text-xl my-5'>Sales Report</h2>
                 <Bar
                   options={{
                     legend: { display: true, position: 'right' },
                   }}
                   data={data}
-                />
+                /> */}
               </div>
             )}
         </div>
